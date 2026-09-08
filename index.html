@@ -18,38 +18,44 @@
                 <p>Análise Espacial</p>
             </div>
             
-            <div class="layer-section">
-                <h3>Mapas Base</h3>
-                <div class="radio-group">
-                    <label class="custom-radio">
-                        <input type="radio" name="basemap" value="dark" checked>
-                        <span class="radio-mark"></span>
-                        Modo Escuro (CartoDB)
-                    </label>
-                    <label class="custom-radio">
-                        <input type="radio" name="basemap" value="light">
-                        <span class="radio-mark"></span>
-                        Modo Claro (OSM)
-                    </label>
-                    <label class="custom-radio">
-                        <input type="radio" name="basemap" value="satellite">
-                        <span class="radio-mark"></span>
-                        Satélite (Esri)
-                    </label>
+            <div class="sidebar-content">
+                <div class="layer-section dropdown">
+                    <h3 class="dropdown-header active" onclick="toggleDropdown(this)">
+                        <span>Mapas Base</span>
+                        <span class="chevron">▼</span>
+                    </h3>
+                    <div class="dropdown-content radio-group">
+                        <label class="custom-radio">
+                            <input type="radio" name="basemap" value="light" checked>
+                            <span class="radio-mark"></span>
+                            Modo Claro (OSM)
+                        </label>
+                        <label class="custom-radio">
+                            <input type="radio" name="basemap" value="satellite">
+                            <span class="radio-mark"></span>
+                            Satélite (Esri)
+                        </label>
+                    </div>
                 </div>
-            </div>
 
-            <div class="layer-section">
-                <h3>Camadas Vetoriais</h3>
-                <div class="checkbox-group" id="geojson-list">
-                    <!-- Gerado dinamicamente -->
+                <div class="layer-section dropdown">
+                    <h3 class="dropdown-header active" onclick="toggleDropdown(this)">
+                        <span>Camadas Vetoriais</span>
+                        <span class="chevron">▼</span>
+                    </h3>
+                    <div class="dropdown-content checkbox-group" id="geojson-list">
+                        <!-- Gerado dinamicamente -->
+                    </div>
                 </div>
-            </div>
 
-            <div class="layer-section">
-                <h3>Camadas Raster</h3>
-                <div class="checkbox-group" id="raster-list">
-                    <!-- Gerado dinamicamente -->
+                <div class="layer-section dropdown">
+                    <h3 class="dropdown-header active" onclick="toggleDropdown(this)">
+                        <span>Camadas Raster</span>
+                        <span class="chevron">▼</span>
+                    </h3>
+                    <div class="dropdown-content checkbox-group" id="raster-list">
+                        <!-- Gerado dinamicamente -->
+                    </div>
                 </div>
             </div>
             

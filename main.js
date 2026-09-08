@@ -1,10 +1,5 @@
 // Configuração dos Mapas Base
 const basemaps = {
-    dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-    }),
     light: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 19
@@ -18,7 +13,7 @@ const basemaps = {
 const map = L.map('map', {
     center: [-22.9, -43.2], // Coordenadas temporárias, faremos fitBounds depois
     zoom: 9,
-    layers: [basemaps.dark],
+    layers: [basemaps.light],
     zoomControl: false // Customizaremos a posição do zoom
 });
 
@@ -248,3 +243,8 @@ function buildLayerUI() {
 
 // Inicializar interface
 buildLayerUI();
+
+// Função para o Dropdown
+function toggleDropdown(element) {
+    element.classList.toggle('active');
+}
