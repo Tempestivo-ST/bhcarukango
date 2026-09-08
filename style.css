@@ -1,0 +1,231 @@
+:root {
+    --bg-dark: #121212;
+    --panel-bg: rgba(24, 24, 27, 0.85);
+    --panel-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f4f4f5;
+    --text-secondary: #a1a1aa;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --danger: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Sidebar Styling - Glassmorphism */
+.sidebar {
+    width: 320px;
+    height: 100%;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid var(--panel-border);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; /* Above Leaflet controls */
+    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-header p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-top: 4px;
+}
+
+.layer-section {
+    padding: 20px;
+    border-bottom: 1px solid var(--panel-border);
+}
+
+.layer-section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* Custom Checkboxes and Radios */
+.checkbox-group, .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.custom-checkbox, .custom-radio {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 32px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.custom-checkbox:hover, .custom-radio:hover {
+    color: #fff;
+}
+
+.custom-checkbox input, .custom-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark, .radio-mark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.radio-mark {
+    border-radius: 50%;
+}
+
+.custom-checkbox:hover input ~ .checkmark, 
+.custom-radio:hover input ~ .radio-mark {
+    background-color: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.4);
+}
+
+.custom-checkbox input:checked ~ .checkmark,
+.custom-radio input:checked ~ .radio-mark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkmark:after, .radio-mark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after,
+.custom-radio input:checked ~ .radio-mark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-radio .radio-mark:after {
+    left: 5px;
+    top: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: #93c5fd;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.loading-indicator.active {
+    opacity: 1;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(147, 197, 253, 0.3);
+    border-top-color: #93c5fd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Map Container */
+#map-container {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    background-color: #1a1a1a;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+/* Custom Leaflet Dark Adjustments */
+.leaflet-control-zoom a {
+    background-color: var(--panel-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--panel-border) !important;
+    backdrop-filter: blur(8px);
+}
+.leaflet-control-zoom a:hover {
+    background-color: rgba(255,255,255,0.1) !important;
+}
+.leaflet-container {
+    background: #000;
+}
